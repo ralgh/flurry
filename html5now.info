@@ -1,7 +1,17 @@
-name        = HTML 5Now
+name        = HTML 5now
 description = HTML5 base theme.
 
 screenshot = screenshot.png
 
 core   = 7.x
 engine = phptemplate
+
+
+stylesheets[all][]   = css/layout.css
+stylesheets[all][]   = css/reset.css
+stylesheets[all][]   = css/base.css
+stylesheets[all][]   = css/style.css
+
+
+scripts[] = js/dd_belatedpng.js
+scripts[] = js/modernizr-1.6.min.js
