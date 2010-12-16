@@ -4,6 +4,17 @@
  * Contains theme override functions and preprocess functions for the html5now theme.
  */
 
+
+/**
+ * Add body classes if certain regions have content.
+ */
+function html5now_preprocess_page(&$variables) {
+  
+  
+}
+
+
+
 /**
  * Implements hook_html_head_alter().
  * We are overwriting the default meta character type tag with HTML5 version.
@@ -36,14 +47,23 @@ function html5now_html_head_alter(&$head_elements) {
   
   
   // Apple Touch Icon
+  
+  $apple_touch_icon_path = './' . drupal_get_path('theme', $GLOBALS['theme']) . '/apple-touch-icon.png';
+  $html5now_apple_touch_icon_path = './' . drupal_get_path('theme', 'html5now') . '/apple-touch-icon.png';
+  
+  $apple_touch_icon = (file_exists($apple_touch_icon_path)) 
+    ? $apple_touch_icon_path 
+    : $html5now_apple_touch_icon_path ;
+  
   $head_elements['apple_touch_icon'] = array(
     '#type' => 'html_tag',
     '#tag' => 'link',
     '#attributes' => array(
       'rel' => 'apple-touch-icon',
-      'href' => '/apple-touch-icon.png'
+      'href' => $apple_touch_icon
     )
   );
+
 
 }
 
