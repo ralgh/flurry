@@ -73,11 +73,11 @@
  */
 ?>
 
-<div id="container">
+<div id="page-wrapper">
 
-  <header role="banner">
+  <header id="header" role="banner">
   <?php if ($logo): ?>
-    <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
+    <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo">
       <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
     </a>
   <?php endif; ?>
@@ -85,7 +85,7 @@
   <?php if ($site_name || $site_slogan): ?>
       <?php if ($site_name): ?>
         <?php if ($title): ?>
-          <div id="site-name"><strong>
+          <div class="site-name"><strong>
             <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
           </strong></div>
         <?php else: /* Use h1 when the content title is empty */ ?>
@@ -109,9 +109,9 @@
   </header>
 
 
-
-  <div id="main">
-    <section id="main-content" class="column<?php if ($main_menu) { print ' with-nav'; } ?>" role="main">
+  <div id="main-wrapper"><div id="main" class="clearfix<?php if ($main_menu || $page['navigation']) { print ' with-navigation'; } ?>">
+    <div id="content" class="column<?php if ($main_menu) { print ' with-nav'; } ?>" role="main">
+      <div class="section">
       <hr />
       <?php if ($page['highlighted']): ?>
         <div id="highlighted"><?php print render($page['highlighted']); ?></div>
@@ -134,12 +134,15 @@
       <?php endif; ?>
       <?php print render($page['content']); ?>
       <?php print $feed_icons; ?>
-    </section><!-- /#main-content -->
+      </div><!-- /.section -->
+    </div><!-- /#content -->
 
   <?php if ($main_menu): ?>
     <hr />
     <nav id="navigation" role="navigation">
+      <div class="section">
       <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'clearfix')), 'heading' => t('Main menu'))); ?>
+      </div><!-- /.section -->
     </nav>
   <?php endif; ?>
 
@@ -156,26 +159,26 @@
       <?php print render($page['sidebar_second']); ?>
     </aside> <!-- /#sidebar-second -->
   <?php endif; ?>
-  </div><!-- /#main -->
+  </div></div><!-- /#main /#main-wrapper -->
   
 <?php if ($page['triptych_first'] || $page['triptych_middle'] || $page['triptych_last']): ?>
-  <section id="triptych" class="clearfix">
+  <div id="triptych" class="clearfix">
     <?php print render($page['triptych_first']); ?>
     <?php print render($page['triptych_middle']); ?>
     <?php print render($page['triptych_last']); ?>
-  </section> <!-- /#triptych -->
+  </div> <!-- /#triptych -->
 <?php endif; ?>
 
   <hr />
   <footer id="footer" role="contentinfo" class="clearfix">
 
   <?php if ($page['footer_firstcolumn'] || $page['footer_secondcolumn'] || $page['footer_thirdcolumn'] || $page['footer_fourthcolumn']): ?>
-    <section id="footer-columns" class="clearfix">
+    <div id="footer-columns" class="clearfix">
       <?php print render($page['footer_firstcolumn']); ?>
       <?php print render($page['footer_secondcolumn']); ?>
       <?php print render($page['footer_thirdcolumn']); ?>
       <?php print render($page['footer_fourthcolumn']); ?>
-    </section> <!-- /#footer-columns -->
+    </div> <!-- /#footer-columns -->
   <?php endif; ?>
   
   <?php print render($page['footer']); ?>
