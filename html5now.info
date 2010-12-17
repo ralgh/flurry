@@ -14,6 +14,7 @@ stylesheets[all][]   = css/screen.css
 
 
 scripts[] = js/dd_belatedpng.js
+scripts[] = js/jquery.mediaqueries.js
 scripts[] = js/modernizr-1.6.min.js
 
 

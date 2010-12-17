@@ -76,18 +76,23 @@
  * @see template_process()
  */
 ?>
-<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+<?php if ($page): ?> 
+<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+<?php endif; ?>
 
-<?php if ($user_picture || !$page || $display_submitted): ?>
+<?php if (!$page): ?>
+<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <header>
+<?php endif; ?>
+
     <?php print $user_picture; ?>
 
-    <?php print render($title_prefix); ?>
     <?php if (!$page): ?>
+    <?php print render($title_prefix); ?>
       <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
-    <?php endif; ?>
     <?php print render($title_suffix); ?>
-
+    <?php endif; ?>
+    
     <?php if ($display_submitted): ?>
       <p class="submitted">
         <?php
@@ -96,8 +101,11 @@
         ?>
       </p>
     <?php endif; ?>
+    
+<?php if (!$page): ?>
   </header>
 <?php endif; ?>
+
 
 <div class="content"<?php print $content_attributes; ?>>
   <?php
@@ -110,12 +118,18 @@
 </div> <!-- /.content -->
 
 <?php if (!empty($content['field_tags']) || !empty($content['links'])): ?>
-  <footer>
+  <?php if (!$page): ?><footer><?php endif; ?>
     <?php print render($content['field_tags']); ?>
     <?php print render($content['links']); ?>
-  </footer>
+  <?php if (!$page): ?></footer><?php endif; ?>
 <?php endif; ?>
 
 <?php print render($content['comments']); ?>
 
+<?php if (!$page): ?>
 </article> <!-- /.node -->
+<?php endif; ?>
+
+<?php if ($page): ?> 
+</div><!-- /.node -->
+<?php endif; ?>
