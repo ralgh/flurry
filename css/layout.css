@@ -1,58 +1,17 @@
 
-#header {
-  
-}
-
-#header .logo {
-  
-}
-
-#header .site-name {
-  
-}
-
-#header .site-name {
-  
-}
-
-
-#main {
-  position: relative;
-}
-
-#main-content {
-  
-}
-
-#navigation {
-  
-}
-
-#sidebar-first {
-  
-}
-
-#sidebar-second {
-  
-}
-
-#footer {
-  
-}
-
 
 hr {
   display: none;
 }
 
-
-
-
-
-
 #page-wrapper,
 .region-bottom {
   min-width: 960px; /* Don't allow the browser to make the site unreadable. */
+}
+
+
+#header .site-name {
+  display: inline;
 }
 
 /*
@@ -107,8 +66,10 @@ hr {
   margin-top: 2.3em; /* Set this to the same value as the navigation height above. */
 }
 
-#navigation .section {
+#navigation ul li {
+  display: inline-block;
 }
+
 
 /*
  * First sidebar

@@ -72,117 +72,118 @@
  * @see template_process()
  */
 ?>
+<div id="page">
 
-<div id="page-wrapper">
+  <div id="page-wrapper">
+    <header id="header" role="banner">
+    <?php if ($logo): ?>
+      <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo">
+        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+      </a>
+    <?php endif; ?>
 
-  <header id="header" role="banner">
-  <?php if ($logo): ?>
-    <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo">
-      <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-    </a>
-  <?php endif; ?>
-
-  <?php if ($site_name || $site_slogan): ?>
-      <?php if ($site_name): ?>
-        <?php if ($title): ?>
-          <div class="site-name"><strong>
-            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-          </strong></div>
-        <?php else: /* Use h1 when the content title is empty */ ?>
-          <h1>
-            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-          </h1>
+    <?php if ($site_name || $site_slogan): ?>
+        <?php if ($site_name): ?>
+          <?php if ($title): ?>
+            <div class="site-name"><strong>
+              <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
+            </strong></div>
+          <?php else: /* Use h1 when the content title is empty */ ?>
+            <h1>
+              <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
+            </h1>
+          <?php endif; ?>
         <?php endif; ?>
-      <?php endif; ?>
 
-      <?php if ($site_slogan): ?>
-        <div class="site-slogan"><?php print $site_slogan; ?></div>
-      <?php endif; ?>
-  <?php endif; ?>
+        <?php if ($site_slogan): ?>
+          <div class="site-slogan"><?php print $site_slogan; ?></div>
+        <?php endif; ?>
+    <?php endif; ?>
 
-  <?php print render($page['header']); ?>
+    <?php print render($page['header']); ?>
 
-  <?php if ($main_menu): ?>
-    <p id="skip-link"><em><a href="#navigation">Skip to Navigation</a></em> &darr;</p> 
-  <?php endif; ?>
+    <?php if ($main_menu): ?>
+      <p id="skip-link" class="visuallyHidden"><em><a href="#navigation">Skip to Navigation</a></em> &darr;</p> 
+    <?php endif; ?>
 
-  </header>
+    </header>
 
 
-  <div id="main-wrapper"><div id="main" class="clearfix<?php if ($main_menu || $page['navigation']) { print ' with-navigation'; } ?>">
-    <div id="content" class="column<?php if ($main_menu) { print ' with-nav'; } ?>" role="main">
-      <div class="section">
+    <div id="main-wrapper"><div id="main" class="clearfix<?php if ($main_menu || $navigation) { print ' with-navigation'; } ?>">
+      <div id="content" class="column<?php if ($main_menu) { print ' with-nav'; } ?>" role="main">
+        <div class="section">
+        <hr />
+        <?php if ($page['highlighted']): ?>
+          <div id="highlighted"><?php print render($page['highlighted']); ?></div>
+        <?php endif; ?>
+        <?php if ($breadcrumb): ?>
+          <div id="breadcrumb"><?php print $breadcrumb; ?></div>
+        <?php endif; ?>
+        <?php print $messages; ?>
+        <?php if ($tabs): ?>
+          <div class="tabs"><?php print render($tabs); ?></div>
+        <?php endif; ?>
+        <?php print render($title_prefix); ?>
+        <?php if ($title): ?>
+          <h1 class="title" id="page-title"><?php print $title; ?></h1>
+        <?php endif; ?>
+        <?php print render($title_suffix); ?>
+        <?php print render($page['help']); ?>
+        <?php if ($action_links): ?>
+          <ul class="action-links"><?php print render($action_links); ?></ul>
+        <?php endif; ?>
+        <?php print render($page['content']); ?>
+        <?php print $feed_icons; ?>
+        </div><!-- /.section -->
+      </div><!-- /#content -->
+
+    <?php if ($main_menu || $navigation): ?>
       <hr />
-      <?php if ($page['highlighted']): ?>
-        <div id="highlighted"><?php print render($page['highlighted']); ?></div>
-      <?php endif; ?>
-      <?php if ($breadcrumb): ?>
-        <div id="breadcrumb"><?php print $breadcrumb; ?></div>
-      <?php endif; ?>
-      <?php print $messages; ?>
-      <?php print render($title_prefix); ?>
-      <?php if ($title): ?>
-        <h1 class="title" id="page-title"><?php print $title; ?></h1>
-      <?php endif; ?>
-      <?php print render($title_suffix); ?>
-      <?php if ($tabs): ?>
-        <div class="tabs"><?php print render($tabs); ?></div>
-      <?php endif; ?>
-      <?php print render($page['help']); ?>
-      <?php if ($action_links): ?>
-        <ul class="action-links"><?php print render($action_links); ?></ul>
-      <?php endif; ?>
-      <?php print render($page['content']); ?>
-      <?php print $feed_icons; ?>
-      </div><!-- /.section -->
-    </div><!-- /#content -->
+      <nav id="navigation" role="navigation">
+        <div class="section">
+        <?php print $navigation; ?>
+        </div><!-- /.section -->
+      </nav>
+    <?php endif; ?>
 
-  <?php if ($main_menu): ?>
-    <hr />
-    <nav id="navigation" role="navigation">
-      <div class="section">
-      <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'clearfix')), 'heading' => t('Main menu'))); ?>
-      </div><!-- /.section -->
-    </nav>
-  <?php endif; ?>
+    <?php if ($page['sidebar_first']): ?>
+      <hr />
+      <aside id="sidebar-first" class="column" role="complementary">
+        <?php print render($page['sidebar_first']); ?>
+      </aside> <!-- /#sidebar-first -->
+    <?php endif; ?>
 
-  <?php if ($page['sidebar_first']): ?>
-    <hr />
-    <aside id="sidebar-first" class="column" role="complementary">
-      <?php print render($page['sidebar_first']); ?>
-    </aside> <!-- /#sidebar-first -->
-  <?php endif; ?>
-
-  <?php if ($page['sidebar_second']): ?>
-    <hr />
-    <aside id="sidebar-second" class="column" role="complementary">
-      <?php print render($page['sidebar_second']); ?>
-    </aside> <!-- /#sidebar-second -->
-  <?php endif; ?>
-  </div></div><!-- /#main /#main-wrapper -->
+    <?php if ($page['sidebar_second']): ?>
+      <hr />
+      <aside id="sidebar-second" class="column" role="complementary">
+        <?php print render($page['sidebar_second']); ?>
+      </aside> <!-- /#sidebar-second -->
+    <?php endif; ?>
+    </div></div><!-- /#main /#main-wrapper -->
   
-<?php if ($page['triptych_first'] || $page['triptych_middle'] || $page['triptych_last']): ?>
-  <div id="triptych" class="clearfix">
-    <?php print render($page['triptych_first']); ?>
-    <?php print render($page['triptych_middle']); ?>
-    <?php print render($page['triptych_last']); ?>
-  </div> <!-- /#triptych -->
-<?php endif; ?>
-
-  <hr />
-  <footer id="footer" role="contentinfo" class="clearfix">
-
-  <?php if ($page['footer_firstcolumn'] || $page['footer_secondcolumn'] || $page['footer_thirdcolumn'] || $page['footer_fourthcolumn']): ?>
-    <div id="footer-columns" class="clearfix">
-      <?php print render($page['footer_firstcolumn']); ?>
-      <?php print render($page['footer_secondcolumn']); ?>
-      <?php print render($page['footer_thirdcolumn']); ?>
-      <?php print render($page['footer_fourthcolumn']); ?>
-    </div> <!-- /#footer-columns -->
+  <?php if ($page['triptych_first'] || $page['triptych_middle'] || $page['triptych_last']): ?>
+    <div id="triptych" class="clearfix">
+      <?php print render($page['triptych_first']); ?>
+      <?php print render($page['triptych_middle']); ?>
+      <?php print render($page['triptych_last']); ?>
+    </div> <!-- /#triptych -->
   <?php endif; ?>
-  
-  <?php print render($page['footer']); ?>
-  
-  </footer>
 
-</div> <!-- /#container -->
+    <hr />
+    <footer id="footer" role="contentinfo" class="clearfix">
+
+    <?php if ($page['footer_firstcolumn'] || $page['footer_secondcolumn'] || $page['footer_thirdcolumn'] || $page['footer_fourthcolumn']): ?>
+      <div id="footer-columns" class="clearfix">
+        <?php print render($page['footer_firstcolumn']); ?>
+        <?php print render($page['footer_secondcolumn']); ?>
+        <?php print render($page['footer_thirdcolumn']); ?>
+        <?php print render($page['footer_fourthcolumn']); ?>
+      </div> <!-- /#footer-columns -->
+    <?php endif; ?>
+  
+    <?php print render($page['footer']); ?>
+  
+    </footer>
+
+  </div> <!-- /#page-wrapper -->
+</div> <!-- /#page -->

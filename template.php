@@ -10,10 +10,26 @@
  */
 function html5now_preprocess_page(&$variables) {
   
+  // build main menu
+  $navigation_attributes = array(
+          'links' => $variables['main_menu'], 
+          'attributes' => array(
+            'id' => 'main-menu',
+            'class' => array(
+                'links',
+                'clearfix'
+                )
+             ),
+          'heading' => array(
+               'text' => t('Main menu'),
+               'class' => 'visuallyHidden',
+               'level' => 'h2'
+               ) 
+          );
+          
+  $variables['navigation'] = theme('links__system_main_menu', $navigation_attributes);
   
 }
-
-
 
 /**
  * Implements hook_html_head_alter().

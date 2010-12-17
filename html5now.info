@@ -9,7 +9,8 @@ engine = phptemplate
 stylesheets[all][]   = css/reset.css
 stylesheets[all][]   = css/base.css
 stylesheets[all][]   = css/layout.css
-stylesheets[all][]   = css/style.css
+stylesheets[all][]   = css/fonts-droid.css
+stylesheets[all][]   = css/screen.css
 
 
 scripts[] = js/dd_belatedpng.js
