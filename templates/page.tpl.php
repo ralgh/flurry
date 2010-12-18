@@ -73,7 +73,6 @@
  */
 ?>
 <div id="page">
-
   <div id="page-wrapper">
     <header id="header" role="banner">
     <?php if ($logo): ?>
@@ -102,26 +101,30 @@
 
     <?php print render($page['header']); ?>
 
-    <?php if ($main_menu): ?>
-      <p id="skip-link" class="visuallyHidden"><em><a href="#navigation">Skip to Navigation</a></em> &darr;</p> 
-    <?php endif; ?>
-
     </header>
+    
+  <?php if ($main_menu || $navigation): ?>
+    <hr />
+    <nav id="navigation" role="navigation">
+      <div class="section">
+      <?php print $navigation; ?>
+      </div><!-- /.section -->
+    </nav>
+  <?php endif; ?>
 
-
-    <div id="main-wrapper"><div id="main" class="clearfix<?php if ($main_menu || $navigation) { print ' with-navigation'; } ?>">
-      <div id="content" class="column<?php if ($main_menu) { print ' with-nav'; } ?>" role="main">
+    <div id="main" class="clearfix">
+      <div id="content" class="column" role="main">
         <div class="section">
         <hr />
         <?php if ($page['highlighted']): ?>
           <div id="highlighted"><?php print render($page['highlighted']); ?></div>
         <?php endif; ?>
-        <?php if ($breadcrumb): ?>
-          <div id="breadcrumb"><?php print $breadcrumb; ?></div>
-        <?php endif; ?>
         <?php print $messages; ?>
         <?php if ($tabs): ?>
           <div class="tabs"><?php print render($tabs); ?></div>
+        <?php endif; ?>
+        <?php if ($breadcrumb): ?>
+          <nav id="breadcrumb"><?php print $breadcrumb; ?></nav>
         <?php endif; ?>
         <?php print render($title_prefix); ?>
         <?php if ($title): ?>
@@ -137,14 +140,6 @@
         </div><!-- /.section -->
       </div><!-- /#content -->
 
-    <?php if ($main_menu || $navigation): ?>
-      <hr />
-      <nav id="navigation" role="navigation">
-        <div class="section">
-        <?php print $navigation; ?>
-        </div><!-- /.section -->
-      </nav>
-    <?php endif; ?>
 
     <?php if ($page['sidebar_first']): ?>
       <hr />
@@ -159,7 +154,9 @@
         <?php print render($page['sidebar_second']); ?>
       </aside> <!-- /#sidebar-second -->
     <?php endif; ?>
-    </div></div><!-- /#main /#main-wrapper -->
+    </div><!-- /#main -->
+  
+  
   
   <?php if ($page['triptych_first'] || $page['triptych_middle'] || $page['triptych_last']): ?>
     <div id="triptych" class="clearfix">
