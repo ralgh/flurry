@@ -49,7 +49,7 @@ hr {
  * Navigation
  */
 #navigation {
-  width: 100%;
+  width: auto;
 }
 
 #navigation ul li {
