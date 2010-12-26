@@ -1,14 +1,14 @@
 <?php
 /**
  * @file
- * Contains theme override functions and preprocess functions for the html5now theme.
+ * Contains theme override functions and preprocess functions for the flurry theme.
  */
 
 
 /**
  * Add body classes if certain regions have content.
  */
-function html5now_preprocess_page(&$variables) {
+function flurry_preprocess_page(&$variables) {
   
   // build main menu
   $navigation_attributes = array(
@@ -35,13 +35,13 @@ function html5now_preprocess_page(&$variables) {
  * Implements hook_html_head_alter().
  * We are overwriting the default meta character type tag with HTML5 version.
  */
-function html5now_html_head_alter(&$head_elements) {
+function flurry_html_head_alter(&$head_elements) {
   $head_elements['system_meta_content_type']['#attributes'] = array(
     'charset' => 'utf-8'
   );
   
   // Always force latest IE rendering engine (even in intranet) & Chrome Frame
-  $head_elements['html5now_meta_http_equiv'] = array(
+  $head_elements['flurry_meta_http_equiv'] = array(
     '#type' => 'html_tag',
     '#tag' => 'meta',
     '#attributes' => array(
@@ -52,7 +52,7 @@ function html5now_html_head_alter(&$head_elements) {
   );
 
   // Mobile viewport optimized: j.mp/bplateviewport
-  $head_elements['html5now_meta_viewport'] = array(
+  $head_elements['flurry_meta_viewport'] = array(
     '#type' => 'html_tag',
     '#tag' => 'meta',
     '#attributes' => array(
@@ -65,11 +65,11 @@ function html5now_html_head_alter(&$head_elements) {
   // Apple Touch Icon
   
   $apple_touch_icon_path = './' . drupal_get_path('theme', $GLOBALS['theme']) . '/apple-touch-icon.png';
-  $html5now_apple_touch_icon_path = './' . drupal_get_path('theme', 'html5now') . '/apple-touch-icon.png';
+  $flurry_apple_touch_icon_path = './' . drupal_get_path('theme', 'flurry') . '/apple-touch-icon.png';
   
   $apple_touch_icon = (file_exists($apple_touch_icon_path)) 
     ? $apple_touch_icon_path 
-    : $html5now_apple_touch_icon_path ;
+    : $flurry_apple_touch_icon_path ;
   
   $head_elements['apple_touch_icon'] = array(
     '#type' => 'html_tag',
@@ -87,6 +87,6 @@ function html5now_html_head_alter(&$head_elements) {
 /**
  * Changes the search form to use the "search" input element of HTML5.
  */
-function html5now_preprocess_search_block_form(&$vars) {
+function flurry_preprocess_search_block_form(&$vars) {
   $vars['search_form'] = str_replace('type="text"', 'type="search"', $vars['search_form']);
 }

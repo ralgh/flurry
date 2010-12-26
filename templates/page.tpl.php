@@ -84,15 +84,19 @@
 
     <?php if ($site_name || $site_slogan): ?>
         <?php if ($site_name): ?>
+          <div class="site-name">
           <?php if ($title): ?>
-            <div class="site-name"><strong>
-              <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-            </strong></div>
+            <strong>
           <?php else: /* Use h1 when the content title is empty */ ?>
             <h1>
+          <?php endif; ?>
               <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
+          <?php if ($title): ?>
+            </strong>
+          <?php else: /* Use h1 when the content title is empty */ ?>
             </h1>
           <?php endif; ?>
+          </div><!-- /.site-name -->
         <?php endif; ?>
 
         <?php if ($site_slogan): ?>
