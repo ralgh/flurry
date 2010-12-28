@@ -1,0 +1,40 @@
+name        = flurry
+description = Light-weight Drupal 7 HTML5 base theme.
+
+screenshot = screenshot.png
+
+core   = 7.x
+engine = phptemplate
+
+stylesheets[all][]   = css/reset.css
+stylesheets[all][]   = css/base.css
+stylesheets[all][]   = css/layout.css
+stylesheets[all][]   = css/fonts-droid.css
+stylesheets[all][]   = css/screen.css
+
+
+scripts[] = js/dd_belatedpng.js
+scripts[] = js/jquery.mediaqueries.js
+scripts[] = js/modernizr-1.6.min.js
+
+
+regions[header] = Header
+regions[help] = Help
+regions[page_top] = Page top
+regions[page_bottom] = Page bottom
+regions[highlighted] = Highlighted
+
+regions[featured] = Featured
+regions[content] = Content
+regions[sidebar_first] = Sidebar first
+regions[sidebar_second] = Sidebar second
+
+regions[triptych_first] = Triptych first
+regions[triptych_middle] = Triptych middle
+regions[triptych_last] = Triptych last
+
+regions[footer_firstcolumn] = Footer first column
+regions[footer_secondcolumn] = Footer second column
+regions[footer_thirdcolumn] = Footer third column
+regions[footer_fourthcolumn] = Footer fourth column
+regions[footer] = Footer
