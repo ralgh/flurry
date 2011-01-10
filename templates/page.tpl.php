@@ -75,51 +75,57 @@
 <div id="page">
   <div id="page-wrapper">
     <header id="header" role="banner">
-      <div class="section liner">
-    <?php if ($logo): ?>
-      <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo">
-        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-      </a>
-    <?php endif; ?>
+      <div class="section liner clearfix">
+      <?php if ($logo): ?>
+        <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo">
+          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+        </a>
+      <?php endif; ?>
 
-    <?php if ($site_name || $site_slogan): ?>
-        <?php if ($site_name): ?>
-          <div class="site-name">
-          <?php if ($title): ?>
-            <strong>
-          <?php else: /* Use h1 when the content title is empty */ ?>
-            <h1>
-          <?php endif; ?>
-              <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-          <?php if ($title): ?>
-            </strong>
-          <?php else: /* Use h1 when the content title is empty */ ?>
-            </h1>
-          <?php endif; ?>
-          </div><!-- /.site-name -->
+      <?php if ($site_name || $site_slogan): ?>
+      <?php if ($site_name): ?>
+        <div class="site-name">
+        <?php if ($title): ?>
+          <strong>
+        <?php else: /* Use h1 when the content title is empty */ ?>
+          <h1>
         <?php endif; ?>
+            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
+        <?php if ($title): ?>
+          </strong>
+        <?php else: /* Use h1 when the content title is empty */ ?>
+          </h1>
+        <?php endif; ?>
+        </div><!-- /.site-name -->
+      <?php endif; ?>
 
-        <?php if ($site_slogan): ?>
-          <div class="site-slogan"><?php print $site_slogan; ?></div>
-        <?php endif; ?>
-    <?php endif; ?>
+      <?php if ($site_slogan): ?>
+        <div class="site-slogan"><?php print $site_slogan; ?></div>
+      <?php endif; ?>
+      <?php endif; ?>
 
     <?php print render($page['header']); ?>
-      </div><!-- /.section.liner -->
+      </div><!-- /.liner -->
     </header>
     
-  <?php if ($main_menu || $navigation): ?>
+  <?php if ($navigation): ?>
     <hr />
     <nav id="navigation" role="navigation">
-      <div class="section liner">
-      <?php print $navigation; ?>
-      </div><!-- /.section -->
+      <?php if ($navigation): ?>
+        <div class="main-menu liner clearfix">
+        <?php print $navigation; ?>
+        </div><!-- /.liner -->
+      <?php endif; ?>   
+      
+      <?php if ($page['subnav']): ?>
+          <?php print render($page['subnav']); ?>
+      <?php endif; ?>  
     </nav>
   <?php endif; ?>
-
-    <div id="main" class="clearfix">
-      <div id="content" class="column" role="main">
-        <div class="section liner">
+      
+    <div id="main" class="clearfix" role="main">
+      <div id="content" class="column">
+        <div class="section liner clearfix">
         <hr />
         <?php if ($page['highlighted']): ?>
           <div id="highlighted"><?php print render($page['highlighted']); ?></div>
@@ -142,7 +148,7 @@
         <?php endif; ?>
         <?php print render($page['content']); ?>
         <?php print $feed_icons; ?>
-        </div><!-- /.section.liner -->
+        </div><!-- /.liner -->
       </div><!-- /#content -->
 
 
@@ -163,13 +169,28 @@
   
   
   
-  <?php if ($page['triptych_first'] || $page['triptych_middle'] || $page['triptych_last']): ?>
-    <div id="triptych" class="clearfix">
-      <div class="section liner">
+  <?php if ($page['triptych_first'] || $page['triptych_middle'] || $page['triptych_last']): 
+    $trip_classes = '';
+    $trip_count = 0;
+    if ($page['triptych_first']) {$trip_classes .= 'has-first'; $trip_count++;}
+    if ($page['triptych_middle']) {$trip_classes .= ' has-middle'; $trip_count++;}
+    if ($page['triptych_last']) {$trip_classes .= ' has-last'; $trip_count++;}
+    $trip_classes = trim($trip_classes) . ' trip-count-' . $trip_count;
+  ?>
+    <div id="triptych">
+      <div class="section liner clearfix <?php print $trip_classes ?>">
+      <?php if ($page['triptych_first']): ?>
       <?php print render($page['triptych_first']); ?>
+      <?php endif; ?>
+      
+      <?php if ($page['triptych_middle']): ?>
       <?php print render($page['triptych_middle']); ?>
+      <?php endif; ?>
+      
+      <?php if ($page['triptych_last']): ?>
       <?php print render($page['triptych_last']); ?>
-      </div><!-- /.section.liner -->
+      <?php endif; ?>
+      </div><!-- /.liner -->
     </div> <!-- /#triptych -->
   <?php endif; ?>
 
@@ -177,13 +198,13 @@
     <footer id="footer" role="contentinfo" class="clearfix">
 
     <?php if ($page['footer_firstcolumn'] || $page['footer_secondcolumn'] || $page['footer_thirdcolumn'] || $page['footer_fourthcolumn']): ?>
-      <div id="footer-columns" class="clearfix">
-        <div class="section liner">
+      <div id="footer-columns">
+        <div class="section liner clearfix">
         <?php print render($page['footer_firstcolumn']); ?>
         <?php print render($page['footer_secondcolumn']); ?>
         <?php print render($page['footer_thirdcolumn']); ?>
         <?php print render($page['footer_fourthcolumn']); ?>
-        </div><!-- /.section.liner -->
+        </div><!-- /.liner -->
       </div> <!-- /#footer-columns -->
     <?php endif; ?>
   

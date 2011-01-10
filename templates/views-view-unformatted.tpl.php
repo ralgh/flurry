@@ -6,12 +6,14 @@
  *
  * @ingroup views_templates
  */
+ //$display_id = str_replace('_', '-', $view->current_display);
+ $display_id = 'item';
 ?>
 <?php if (!empty($title)): ?>
   <h3><?php print $title; ?></h3>
 <?php endif; ?>
 <?php foreach ($rows as $id => $row): ?>
-  <div id="id-<?php print ($id + 1); ?>" class="<?php print $classes_array[$id]; ?>">
+  <div id="<?php print $display_id . '-' . $id ?>" class="<?php print $classes_array[$id]; ?>">
     <?php print $row; ?>
   </div>
 <?php endforeach; ?>

@@ -3,7 +3,7 @@
  */
  
  /* fonts */
- body,caption,td,input,textarea,select,option,legend,fieldset {
+ body,caption,td,p,input,textarea,select,option,legend,fieldset {
    font-family: 'DroidSansRegular', Arial, sans-serif;
  }
  

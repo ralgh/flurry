@@ -8,11 +8,11 @@
 /**
  * Add body classes if certain regions have content.
  */
-function flurry_preprocess_page(&$variables) {
+function flurry_preprocess_page(&$vars) {
   
   // build main menu
   $navigation_attributes = array(
-          'links' => $variables['main_menu'], 
+          'links' => $vars['main_menu'], 
           'attributes' => array(
             'id' => 'main-menu',
             'class' => array(
@@ -27,7 +27,7 @@ function flurry_preprocess_page(&$variables) {
                ) 
           );
           
-  $variables['navigation'] = theme('links__system_main_menu', $navigation_attributes);
+  $vars['navigation'] = theme('links__system_main_menu', $navigation_attributes);
   
 }
 
@@ -79,7 +79,7 @@ function flurry_html_head_alter(&$head_elements) {
       'href' => $apple_touch_icon
     )
   );
-
+  
 
 }
 
@@ -89,4 +89,39 @@ function flurry_html_head_alter(&$head_elements) {
  */
 function flurry_preprocess_search_block_form(&$vars) {
   $vars['search_form'] = str_replace('type="text"', 'type="search"', $vars['search_form']);
+}
+
+
+
+/**
+ * Override unformated view style
+ */
+function flurry_preprocess_views_view(&$vars) {
+  //kpr($vars);
+}
+
+
+
+
+/**
+ * Override or insert variables into the block templates.
+ *
+ * @param $vars
+ *   An array of variables to pass to the theme template.
+ * @param $hook
+ *   The name of the template being rendered ("block" in this case.)
+ */
+function flurry_preprocess_block(&$vars, $hook) {
+
+  
+  if ($vars['elements']['#block']->region === 'subnav') {
+    // visually hide title in subnav region
+    $vars['title_attributes_array'] = array(
+        "class" => "visuallyHidden",
+    );
+    
+    $vars['classes_array'][] = "clearfix";
+   
+  }
+
 }
