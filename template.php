@@ -58,7 +58,8 @@ function flurry_html_head_alter(&$head_elements) {
     '#attributes' => array(
       'name' => 'viewport',
       'content' => 'width=device-width, initial-scale=1.0'
-    )
+    ),
+    '#weight' => -200
   );
   
   
@@ -77,7 +78,8 @@ function flurry_html_head_alter(&$head_elements) {
     '#attributes' => array(
       'rel' => 'apple-touch-icon',
       'href' => $apple_touch_icon
-    )
+    ),
+    '#weight' => -100
   );
   
 

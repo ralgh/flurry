@@ -40,8 +40,9 @@
 <!--[if IE 8 ]>    <html dir="ltr" lang="en-US" class="no-js ie8"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <html dir="ltr" lang="en-US" class="no-js"> <!--<![endif]-->
 <head>
-<?php print $head; ?>
+
 <title><?php print $head_title; ?></title>
+<?php print $head; ?>
 
 <?php print $styles; ?>
 
