@@ -10,7 +10,6 @@ engine = phptemplate
 stylesheets[screen, projection][]   = css/reset.css
 stylesheets[screen, projection][]   = css/base.css
 stylesheets[screen, projection][]   = css/layout.css
-stylesheets[all][]   = css/fonts-droid.css
 stylesheets[screen, projection][]   = css/screen.css
 
 ; Javascript files
